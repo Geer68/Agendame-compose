@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "sleep 5 && npm run start:dev"]
+CMD ["sh", "-c", "sleep 5 && npm run start"]
