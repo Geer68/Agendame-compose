@@ -80,7 +80,7 @@ CREATE TABLE clients (
   name TEXT NOT NULL,
   lastname TEXT NOT NULL,
   email TEXT NOT NULL,
-  phone TEXT NOT NULL
+  phone NUMBER NOT NULL
 );
 
 CREATE TABLE payments (
@@ -98,7 +98,9 @@ CREATE TABLE appointments (
   client_id INT NOT NULL REFERENCES clients(id),
   service_id INT NOT NULL REFERENCES services(id),
   employee_id INT NOT NULL REFERENCES employees(id),
-  appointment_datetime TIMESTAMP NOT NULL,
+  event_id TEXT,
+  appointment_start TIMESTAMP NOT NULL,
+  appointment_end TIMESTAMP NOT NULL,
   creation_datetime TIMESTAMP NOT NULL,
   confirmation_datetime TIMESTAMP,
   cancellation_datetime TIMESTAMP,
