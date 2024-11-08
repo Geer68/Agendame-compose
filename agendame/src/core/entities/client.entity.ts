@@ -35,7 +35,7 @@ export class Client extends Model {
   email: string;
 
   @AllowNull(false)
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   phone: number;
 
   // Associations

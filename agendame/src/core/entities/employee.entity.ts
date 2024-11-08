@@ -36,6 +36,10 @@ export class Employee extends Model {
   @Column(DataType.INTEGER)
   entrepreneurship_id: number;
 
+  @AllowNull(false)
+  @Column(DataType.STRING)
+  email: string;
+
   // Associations
   @BelongsTo(() => Entrepreneurship)
   entrepreneurship: Entrepreneurship;

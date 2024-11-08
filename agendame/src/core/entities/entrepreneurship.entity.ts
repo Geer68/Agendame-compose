@@ -21,15 +21,12 @@ export class Entrepreneurship extends Model {
   @Column(DataType.INTEGER)
   id: number;
 
-  @AllowNull(false)
   @Column(DataType.STRING)
   name: string;
 
-  @AllowNull(false)
   @Column(DataType.STRING)
   category: string;
 
-  @AllowNull(false)
   @Column(DataType.STRING)
   description: string;
 
@@ -56,6 +53,13 @@ export class Entrepreneurship extends Model {
   @AllowNull(false)
   @Column(DataType.INTEGER)
   account_id: number;
+
+  @AllowNull(false)
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  active: boolean;
 
   // Associations
   @HasMany(() => Service)

@@ -44,14 +44,15 @@ CREATE TABLE users (
   
 CREATE TABLE entrepreneurships (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  category TEXT NOT NULL,
-  description TEXT NOT NULL,
+  name TEXT,
+  category TEXT,
+  description TEXT,
   img TEXT ,
   social_links JSONB,
   cancellation_policy TEXT,
   reminder_text TEXT,
   mp_interest_rate FLOAT,
+  active BOOLEAN,
   account_id INT NOT NULL REFERENCES accounts(id)
 );
 
@@ -59,6 +60,7 @@ CREATE TABLE employees (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
   last_name TEXT,
+  email TEXT NOT NULL,
   entrepreneurship_id INT REFERENCES entrepreneurships(id)
 );
 
@@ -80,7 +82,7 @@ CREATE TABLE clients (
   name TEXT NOT NULL,
   lastname TEXT NOT NULL,
   email TEXT NOT NULL,
-  phone NUMBER NOT NULL
+  phone INTEGER NOT NULL
 );
 
 CREATE TABLE payments (
@@ -112,7 +114,6 @@ CREATE TABLE appointments (
 CREATE TABLE calendars (
   calendar_id TEXT PRIMARY KEY,
   entrepreneurship_id INT REFERENCES entrepreneurships(id),
-  employee_id INT REFERENCES employees(id),
   service_id INT REFERENCES services(id)
 );
 
