@@ -9,10 +9,11 @@ import { Employee } from '../entities/employee.entity';
 import { EmployeeService } from '../entities/employeeService.entity';
 import { Session } from '../entities/session.entity';
 import { VerificationToken } from '../entities/verificationToken.entity';
+import { User } from '../entities/users.entity';
 
 export const databaseProviders = [
   {
-    provide: 'SEQUELIZE',
+    provide: Sequelize,
     useFactory: async () => {
       const sequelize = new Sequelize({
         dialect: 'postgres',
@@ -34,6 +35,7 @@ export const databaseProviders = [
         EmployeeService,
         Session,
         VerificationToken,
+        User,
       ]);
       await sequelize.sync();
       return sequelize;
