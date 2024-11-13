@@ -51,6 +51,7 @@ CREATE TABLE entrepreneurships (
   social_links JSONB,
   cancellation_policy TEXT,
   reminder_text TEXT,
+  mp_token TEXT,
   mp_interest_rate FLOAT,
   active BOOLEAN,
   account_id INT NOT NULL REFERENCES accounts(id)

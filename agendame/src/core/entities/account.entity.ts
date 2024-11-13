@@ -3,10 +3,13 @@ import {
   AutoIncrement,
   Column,
   DataType,
+  ForeignKey,
   Model,
   PrimaryKey,
   Table,
+  BelongsTo,
 } from 'sequelize-typescript';
+import { User } from './users.entity';
 
 @Table({
   tableName: 'accounts',
@@ -19,9 +22,10 @@ export class Account extends Model {
   @Column(DataType.INTEGER)
   id: number;
 
+  @ForeignKey(() => User)
   @AllowNull(false)
-  @Column(DataType.STRING)
-  userId: string;
+  @Column(DataType.INTEGER)
+  userId: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)
@@ -33,33 +37,29 @@ export class Account extends Model {
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  providerAccount: string;
+  providerAccountId: string;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.TEXT)
   refreshToken: string;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.TEXT)
   accessToken: string;
 
-  @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column(DataType.BIGINT)
   expires_at: number;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.TEXT)
   id_token: string;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.TEXT)
   scope: string;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  sesion_state: string;
+  @Column(DataType.TEXT)
+  session_state: string;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.TEXT)
   token_type: string;
+
+  @BelongsTo(() => User)
+  user: User;
 }

@@ -47,6 +47,10 @@ export class Entrepreneurship extends Model {
   reminder_text: string;
 
   @AllowNull(true)
+  @Column(DataType.STRING)
+  mp_token: string;
+
+  @AllowNull(true)
   @Column(DataType.FLOAT)
   mp_interest_rate: number;
 

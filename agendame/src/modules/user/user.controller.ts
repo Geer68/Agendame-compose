@@ -25,8 +25,14 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  // @Post('sign-up')
+  // create(@Body() createUserDto: ) {
+  //   return this.userService.create(createUserDto);
+  // }
+
   @Get(':email')
   findOne(@Param('email') email: string) {
+    console.log(email);
     return this.userService.findOne(email);
   }
 

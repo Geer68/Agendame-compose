@@ -1,9 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateEntrepreneurshipDto } from './dto/create-entrepreneurship.dto';
 import { UpdateEntrepreneurshipDto } from './dto/update-entrepreneurship.dto';
+import { ENTREPRENEURSHIP_REPOSITORY } from 'src/core/constants/constants';
+import { EntrepreneurshipRepository } from './entrepreneurship.repository';
 
 @Injectable()
 export class EntrepreneurshipService {
+  constructor(
+    @Inject(ENTREPRENEURSHIP_REPOSITORY)
+    private readonly entrepreneurshipRepository: EntrepreneurshipRepository,
+  ) {}
   create(createEntrepreneurshipDto: CreateEntrepreneurshipDto) {
     return 'This action adds a new entrepreneurship';
   }

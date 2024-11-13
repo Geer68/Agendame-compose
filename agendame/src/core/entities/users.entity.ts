@@ -3,14 +3,17 @@ import {
   AutoIncrement,
   Column,
   DataType,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
+import { Account } from './account.entity';
+import { Session } from './session.entity';
 
 @Table({
   tableName: 'users',
-  timestamps: true,
+  timestamps: false,
 })
 export class User extends Model {
   @PrimaryKey
@@ -19,23 +22,27 @@ export class User extends Model {
   @Column(DataType.INTEGER)
   id: number;
 
-  @AllowNull(false)
+  @AllowNull
   @Column(DataType.STRING)
   name: string;
 
-  @AllowNull(false)
+  @AllowNull
   @Column(DataType.STRING)
   email: string;
 
-  @AllowNull(false)
+  @AllowNull
   @Column(DataType.DATE)
-  createdAt: Date;
+  emailVerified: Date;
 
-  @AllowNull(false)
-  @Column(DataType.DATE)
-  emailVerifiedAt: Date;
-
-  @AllowNull(false)
+  @AllowNull
   @Column(DataType.STRING)
   image: string;
+
+  // Relación uno-a-muchos con Account
+  @HasMany(() => Account, { as: 'accounts', foreignKey: 'userId' })
+  accounts: Account[];
+
+  // Relación uno-a-muchos con Session
+  @HasMany(() => Session)
+  sessions: Session[];
 }
